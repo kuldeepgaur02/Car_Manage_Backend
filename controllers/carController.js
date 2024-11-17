@@ -19,11 +19,15 @@ const carController = {
     try {
       const search = req.query.search;
       let query = { owner: req.user._id };
-      
+
       if (search) {
-        query.$text = { $search: search };
+        // Using $text to leverage the text index on the Car schema
+        query = {
+          ...query,
+          $text: { $search: search }  // The search will look in title, description, and tags
+        };
       }
-      
+
       const cars = await Car.find(query);
       res.json(cars);
     } catch (error) {
