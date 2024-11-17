@@ -116,10 +116,10 @@ curl -X DELETE http://localhost:5000/api/cars/<car_id> \
 ## Screenshots
 
 ### Swagger UI
-![Swagger UI](/Users/kuldeeprajgour/Desktop/Back/Backend/images/Screenshot 2024-11-17 at 11.15.12 PM.png)
-![Swagger Schema](/Users/kuldeeprajgour/Desktop/Back/Backend/images/Screenshot 2024-11-17 at 11.20.26 PM.png)
-![Swagger Auth](/Users/kuldeeprajgour/Desktop/Back/Backend/images/Screenshot 2024-11-17 at 11.15.48 PM.png)
-![Swagger Cars](/Users/kuldeeprajgour/Desktop/Back/Backend/images/Screenshot 2024-11-17 at 11.16.12 PM.png)
+![Swagger UI](./images/Screenshot%202024-11-17%20at%2011.15.12 PM.png)
+![Swagger Schema](./images/Screenshot 2024-11-17 at 11.20.26 PM.png)
+![Swagger Auth](./images/Screenshot 2024-11-17 at 11.15.48 PM.png)
+![Swagger Cars](./images/Screenshot 2024-11-17 at 11.16.12 PM.png)
 
 ## Contributing
 
