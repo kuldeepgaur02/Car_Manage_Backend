@@ -1,0 +1,8 @@
+# Exclude environment configuration
+.env
+
+# Exclude uploaded files
+uploads/
+
+# Exclude node modules
+node_modules/
