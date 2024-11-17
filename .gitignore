@@ -6,3 +6,5 @@ uploads/
 
 # Exclude node modules
 node_modules/
+
+images/
