@@ -115,11 +115,20 @@ curl -X DELETE http://localhost:5000/api/cars/<car_id> \
 
 ## Screenshots
 
-### Swagger UI
-![Swagger UI](./images/Screenshot%202024-11-17%20at%2011.15.12 PM.png)
-![Swagger Schema](./images/Screenshot 2024-11-17 at 11.20.26 PM.png)
-![Swagger Auth](./images/Screenshot 2024-11-17 at 11.15.48 PM.png)
-![Swagger Cars](./images/Screenshot 2024-11-17 at 11.16.12 PM.png)
+## Swagger UI
+
+### Swagger UI Example
+![Swagger UI](./images/Screenshot_2024-11-17_at_11.15.12_PM.png)
+
+### Swagger Schema
+![Swagger Schema](./images/Screenshot_2024-11-17_at_11.20.26_PM.png)
+
+### Swagger Auth
+![Swagger Auth](./images/Screenshot_2024-11-17_at_11.15.48_PM.png)
+
+### Swagger Cars
+![Swagger Cars](./images/Screenshot_2024-11-17_at_11.16.12_PM.png)
+
 
 ## Contributing
 
