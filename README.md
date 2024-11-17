@@ -118,16 +118,16 @@ curl -X DELETE http://localhost:5000/api/cars/<car_id> \
 ## Swagger UI
 
 ### Swagger UI Example
-![Swagger UI](./images/Screenshot_2024-11-17_at_11.15.12_PM.png)
+![Swagger UI](./images/1.png)
 
 ### Swagger Schema
-![Swagger Schema](./images/Screenshot_2024-11-17_at_11.20.26_PM.png)
+![Swagger Schema](./images/2.png)
 
 ### Swagger Auth
-![Swagger Auth](./images/Screenshot_2024-11-17_at_11.15.48_PM.png)
+![Swagger Auth](./images/3_PM.png)
 
 ### Swagger Cars
-![Swagger Cars](./images/Screenshot_2024-11-17_at_11.16.12_PM.png)
+![Swagger Cars](./images/4.png)
 
 
 ## Contributing
