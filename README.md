@@ -124,7 +124,7 @@ curl -X DELETE http://localhost:5000/api/cars/<car_id> \
 ![Swagger Schema](./images/2.png)
 
 ### Swagger Auth
-![Swagger Auth](./images/3_PM.png)
+![Swagger Auth](./images/3.png)
 
 ### Swagger Cars
 ![Swagger Cars](./images/4.png)
