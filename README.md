@@ -83,48 +83,15 @@ npm install --save-dev
 Create a `.env` file in the root directory:
 
 ```env
-# Server Configuration
-PORT=5000
-NODE_ENV=development
-
-# Database Configuration
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster>/<database>
-MONGO_DB_NAME=car_management
-
-# Authentication
-JWT_SECRET=your_jwt_secret_key
-JWT_EXPIRE=24h
-REFRESH_TOKEN_SECRET=your_refresh_token_secret
-REFRESH_TOKEN_EXPIRE=7d
-
-# File Upload
-MAX_FILE_SIZE=5242880
-ALLOWED_FILE_TYPES=image/jpeg,image/png,image/webp
-UPLOAD_PATH=./uploads
-
-# API Configuration
-API_PREFIX=/api/v1
-RATE_LIMIT_WINDOW=15
-RATE_LIMIT_MAX=100
-
-# Cors Configuration
-ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+PORT=PORT 
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority
+JWT_SECRET=<your_secret_key>
 ```
 
 ## 🚀 Getting Started
 
 ```bash
-# Start development server
-npm run dev
-
-# Start production server
-npm start
-
-# Run tests
-npm test
-
-# Generate API documentation
-npm run docs
+node server.js
 ```
 
 
