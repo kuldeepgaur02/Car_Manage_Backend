@@ -1,4 +1,3 @@
-// server.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,15 +10,16 @@ const authRoutes = require('./routes/auth');
 const carRoutes = require('./routes/cars');
 const connectDB = require('./config/db');
 
-const app = express();
-
+const app = express()
 // Connect to Database
 connectDB();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
+
+// Update the static middleware to use /tmp/uploads
+app.use('/uploads', express.static(path.join('/tmp', 'uploads')));
 
 // Swagger Documentation
 app.use('/api/docs', swaggerUi.serve);
@@ -29,15 +29,37 @@ app.get('/api/docs', swaggerUi.setup(swaggerDocument));
 app.use('/api/auth', authRoutes);
 app.use('/api/cars', carRoutes);
 
-// Create uploads directory if it doesn't exist
+// Ensure the uploads directory exists inside /tmp
 const fs = require('fs');
-if (!fs.existsSync('uploads')) {
-    fs.mkdirSync('uploads');
+const uploadDir = path.join('/tmp', 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-app.get("/",(req,resp)=>{
+// Define file upload logic (using multer or custom file upload handler)
+const multer = require('multer');
+
+// Configure storage for multer to store files in the /tmp/uploads directory
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, uploadDir); // Store files in /tmp/uploads
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname); // Keep the original file name
+    }
+});
+
+const upload = multer({ storage });
+
+// Upload route
+app.post('/upload', upload.single('file'), (req, res) => {
+    res.send('File uploaded successfully');
+});
+
+// Home route
+app.get("/", (req, resp) => {
     resp.status(200).json("Welcome to Backend server");
-})
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -45,7 +67,8 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-const PORT = process.env.PORT ;
+// Start the server
+const PORT = process.env.PORT || 3000; // Default to 3000 if not defined
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`API Documentation available at http://localhost:${PORT}/api/docs`);
