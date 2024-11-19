@@ -1,4 +1,4 @@
-equire('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -23,11 +23,9 @@ app.use('/uploads', express.static(path.join('/tmp', 'uploads')));
 
 // Swagger Documentation
 app.use('/api/docs', swaggerUi.serve);
-app.get('/api/docs', swaggerUi.setup(swaggerDocument));
-
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cars', carRoutes);
+
 
 // Ensure the uploads directory exists inside /tmp
 const fs = require('fs');
@@ -35,10 +33,7 @@ const uploadDir = path.join('/tmp', 'uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
-
-// Define file upload logic (using multer or custom file upload handler)
 const multer = require('multer');
-
 // Configure storage for multer to store files in the /tmp/uploads directory
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -48,14 +43,11 @@ const storage = multer.diskStorage({
         cb(null, file.originalname); // Keep the original file name
     }
 });
-
 const upload = multer({ storage });
-
 // Upload route
 app.post('/upload', upload.single('file'), (req, res) => {
     res.send('File uploaded successfully');
 });
-
 // Home route
 app.get("/", (req, resp) => {
     resp.status(200).json("Welcome to Backend server");
@@ -68,7 +60,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-const PORT = process.env.PORT ; 
+const PORT = process.env.PORT || 3000;   // Default to 3000 if not defined
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`API Documentation available at http://localhost:${PORT}/api/docs`);
