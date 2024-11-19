@@ -1,41 +1,52 @@
 const Car = require('../models/Car');
 
 const carController = {
-  async createCar(req, res) {
+  async  createCar(req, res) {
     try {
+      // Check if files are uploaded
+      if (!req.files) {
+        return res.status(400).json({ error: 'No images uploaded.' });
+      }
+  
       const { title, description, tags } = req.body;
   
-      // Parse tags if it is a string
       let parsedTags;
       if (typeof tags === 'string') {
         try {
-          parsedTags = JSON.parse(tags); // Parse the tags string into an object
+          parsedTags = JSON.parse(tags); // Parse stringified tags
         } catch (err) {
-          return res.status(400).json({ error: "Invalid tags format. Tags should be a valid JSON object." });
+          return res.status(400).json({ error: 'Invalid tags format. Tags should be a valid JSON object.' });
         }
       } else {
         parsedTags = tags;
       }
   
-      // Validate parsedTags
+      // Validate tags
       if (!parsedTags || !parsedTags.car_type || !parsedTags.company || !parsedTags.dealer) {
-        return res.status(400).json({ error: "All tag fields (car_type, company, dealer) are required" });
+        return res.status(400).json({ error: 'All tag fields (car_type, company, dealer) are required.' });
       }
   
+      // Create the car document
       const car = new Car({
         title,
         description,
         tags: parsedTags,
-        owner: req.user._id,
-        images: req.files.map(file => file.path) // Process uploaded images
+        owner: req.user._id, // Assuming user is authenticated
+        images: req.files.map(file => file.path) // Save the file paths from multer
       });
   
       await car.save();
-      res.status(201).json(car);
+      res.status(201).json(car); // Respond with created car object
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      // Handle errors, including multer validation errors
+      if (error.message.includes('Not an image!')) {
+        return res.status(400).json({ error: 'Only image files are allowed.' });
+      }
+      console.error(error);
+      res.status(500).json({ error: 'Something went wrong. Please try again later.' });
     }
   },
+  
   
   async getCars(req, res) {
     try {
