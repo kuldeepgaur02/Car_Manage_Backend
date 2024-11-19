@@ -44,7 +44,7 @@ module.exports = app;
 
 // Only start the server if we're not in Vercel
 if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT ;
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`API Documentation available at http://localhost:${PORT}/api/docs`);
