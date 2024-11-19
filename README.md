@@ -241,20 +241,22 @@ Authorization: Bearer <token>
   createdAt: Date,
   updatedAt: Date
 }
+
+## Screenshots
+## Swagger UI
+### Swagger UI Example
+![Swagger UI](./images/1.png)
+### Swagger Auth
+![Swagger Auth](./images/2.png)
+### Swagger Cars
+![Swagger Cars](./images/3.png)
+### Swagger Schema
+![Swagger Schema](./images/4.png)
+## Contributing
+We welcome contributions to enhance the functionality. Please follow these 
 ```
 
-## 🧪 Testing
 
-```bash
-# Run all tests
-npm test
-
-# Run specific test suite
-npm test -- auth.test.js
-
-# Generate coverage report
-npm run test:coverage
-```
 
 ## 🌐 Deployment
 
@@ -274,18 +276,15 @@ npm start
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## 👨‍💻 Author
 
 Your Name
-- Email: your.email@example.com
-- GitHub: [@yourusername](https://github.com/yourusername)
+Kuldeep Gour 
+kuldeepgour002@gmail.com
 
 ## 🙏 Acknowledgments
 
 - Express.js team for the amazing framework
 - MongoDB team for the robust database
-- All contributors who have helped with the project
