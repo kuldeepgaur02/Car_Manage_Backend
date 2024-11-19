@@ -35,6 +35,10 @@ if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads');
 }
 
+app.get("/",(req,resp)=>{
+    resp.status(200).json("Welcome to Backend server");
+})
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
