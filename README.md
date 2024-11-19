@@ -127,134 +127,97 @@ npm test
 npm run docs
 ```
 
-## 📚 API Documentation
 
-### Base URL
+## API Documentation
+
+This project uses Swagger for API documentation. Access the interactive API documentation at:
+
 ```
-http://localhost:5000/api/v1
-```
-
-### Authentication Endpoints
-
-#### 🔑 Register New User
-```http
-POST /auth/register
-Content-Type: application/json
-
-{
-  "username": "string",
-  "email": "string",
-  "password": "string"
-}
+http://localhost:5000/api/docs
 ```
 
-#### 🔓 Login
-```http
-POST /auth/login
-Content-Type: application/json
+## API Endpoints
 
-{
-  "email": "string",
-  "password": "string"
-}
+### Authentication
+
+#### Register
+- **Method**: POST
+- **Endpoint**: `/api/auth/register`
+
+#### Login
+- **Method**: POST
+- **Endpoint**: `/api/auth/login`
+
+### Car Management
+
+#### Create Car
+- **Method**: POST
+- **Endpoint**: `/api/cars`
+- **Example**:
+```bash
+curl -X POST http://localhost:5000/api/cars \
+  -H "Authorization: Bearer <JWT_TOKEN>" \
+  -F "title=Car Model X" \
+  -F "description=A high-end sports car" \
+  -F "tags[car_type]=Sports" \
+  -F "tags[company]=CarCo" \
+  -F "tags[dealer]=XYZ Motors" \
+  -F "images=@path/to/image.jpg"
 ```
 
-### Car Management Endpoints
-
-#### 🚗 Create Car
-```http
-POST /cars
-Authorization: Bearer <token>
-Content-Type: multipart/form-data
-
-{
-  "title": "string",
-  "description": "string",
-  "price": "number",
-  "tags": {
-    "car_type": "string",
-    "company": "string",
-    "dealer": "string"
-  },
-  "images": "file[]"
-}
+#### Get All Cars
+- **Method**: GET
+- **Endpoint**: `/api/cars?search=keyword`
+- **Example**:
+```bash
+curl -X GET http://localhost:5000/api/cars?search=Sports \
+  -H "Authorization: Bearer <JWT_TOKEN>"
 ```
 
-#### 📋 Get All Cars
-```http
-GET /cars
-Authorization: Bearer <token>
-Query Parameters:
-  - search: string
-  - tags: object
-  - page: number
-  - limit: number
-  - sort: string
+#### Get a Car by ID
+- **Method**: GET
+- **Endpoint**: `/api/cars/:id`
+- **Example**:
+```bash
+curl -X GET http://localhost:5000/api/cars/<car_id> \
+  -H "Authorization: Bearer <JWT_TOKEN>"
 ```
 
-#### 🔍 Get Car by ID
-```http
-GET /cars/:id
-Authorization: Bearer <token>
+#### Update a Car
+- **Method**: PATCH
+- **Endpoint**: `/api/cars/:id`
+- **Example**:
+```bash
+curl -X PATCH http://localhost:5000/api/cars/<car_id> \
+  -H "Authorization: Bearer <JWT_TOKEN>" \
+  -F "title=Updated Model" \
+  -F "tags[car_type]=Luxury"
 ```
 
-#### ✏️ Update Car
-```http
-PATCH /cars/:id
-Authorization: Bearer <token>
-Content-Type: multipart/form-data
+#### Delete a Car
+- **Method**: DELETE
+- **Endpoint**: `/api/cars/:id`
+- **Example**:
+```bash
+curl -X DELETE http://localhost:5000/api/cars/<car_id> \
+  -H "Authorization: Bearer <JWT_TOKEN>"
 ```
-
-#### 🗑️ Delete Car
-```http
-DELETE /cars/:id
-Authorization: Bearer <token>
-```
-
-## 💾 Database Schema
-
-### User Schema
-```javascript
-{
-  username: String,
-  email: String,
-  password: String,
-  role: String,
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Car Schema
-```javascript
-{
-  title: String,
-  description: String,
-  price: Number,
-  images: [String],
-  tags: {
-    car_type: String,
-    company: String,
-    dealer: String
-  },
-  owner: ObjectId,
-  createdAt: Date,
-  updatedAt: Date
-}
 
 ## Screenshots
+
 ## Swagger UI
+
 ### Swagger UI Example
 ![Swagger UI](./images/1.png)
+
 ### Swagger Auth
 ![Swagger Auth](./images/2.png)
+
 ### Swagger Cars
 ![Swagger Cars](./images/3.png)
+
 ### Swagger Schema
 ![Swagger Schema](./images/4.png)
-## Contributing
-We welcome contributions to enhance the functionality. Please follow these 
-```
 
 
 
