@@ -209,8 +209,6 @@ npm start
 
 
 ## 👨‍💻 Author
-
-Your Name
 Kuldeep Gour 
 kuldeepgour002@gmail.com
 
